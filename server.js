@@ -20,6 +20,13 @@ app.get('/language', function(req, res) {
     res.send( req.headers['accept-language']);
 });
 
+app.get('/os', function(req, res) {
+    // got no clue how this works
+    // credit goes to: http://stackoverflow.com/questions/17779744/regular-expression-to-get-a-string-between-parentheses-in-javascript
+    var regExp = /\(([^)]+)\)/;
+    res.send( regExp.exec(req.headers['user-agent'])[1] );
+})
+
 var server = app.listen(port, function() {
     console.log("Express app is up on port " + port);
 });

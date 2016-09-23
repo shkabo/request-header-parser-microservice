@@ -31,6 +31,12 @@ describe("parser test", function() {
             .expect('en-GB,en-US;q=0.8,en;q=0.6', done);
    });
    
+   it('pass extract os string', function(done) {
+        request(server)
+            .get('/os')
+            .set('user-agent' , 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36')
+            .expect('X11; Linux x86_64', done);
+    });
    
     
 });
