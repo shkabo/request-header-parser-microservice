@@ -37,6 +37,15 @@ describe("parser test", function() {
             .set('user-agent' , 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36')
             .expect('X11; Linux x86_64', done);
     });
+    
+    it('pass api/whoami', function(done) {
+        request(server)
+            .get('/api/whoami')
+            .set('user-agent' , 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36')
+            .set('accept-language', 'en-GB,en-US;q=0.8,en;q=0.6')
+            .set('x-forwarded-for', '192.168.1.2')
+            .expect({"ipaddress": "192.168.1.2", "language": "en-GB,en-US;q=0.8,en;q=0.6", "software": "X11; Linux x86_64"}, done);
+    });
    
     
 });

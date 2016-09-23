@@ -13,11 +13,11 @@ app.get('/ip', function(req, res) {
 });
 
 app.get('/useragent', function(req, res){
-   res.send( req.headers['user-agent']); 
+   res.send( req.headers['user-agent'] ); 
 }); 
 
 app.get('/language', function(req, res) {
-    res.send( req.headers['accept-language']);
+    res.send( req.headers['accept-language'] );
 });
 
 app.get('/os', function(req, res) {
@@ -25,7 +25,17 @@ app.get('/os', function(req, res) {
     // credit goes to: http://stackoverflow.com/questions/17779744/regular-expression-to-get-a-string-between-parentheses-in-javascript
     var regExp = /\(([^)]+)\)/;
     res.send( regExp.exec(req.headers['user-agent'])[1] );
-})
+});
+
+app.get('/api/whoami', function(req, res) {
+   var ipaddress =  req.headers['x-forwarded-for'];
+   var language = req.headers['accept-language'];
+   
+   var regExp = /\(([^)]+)\)/;
+   var software = regExp.exec(req.headers['user-agent'])[1];
+   
+   res.send({"ipaddress": ipaddress, "language": language, "software": software});
+});
 
 var server = app.listen(port, function() {
     console.log("Express app is up on port " + port);
