@@ -28,7 +28,7 @@ describe("parser test", function() {
         request(server) 
             .get('/language')
             .set('accept-language', 'en-GB,en-US;q=0.8,en;q=0.6')
-            .expect('en-GB,en-US;q=0.8,en;q=0.6', done);
+            .expect('en-GB', done);
    });
    
    it('pass extract os string', function(done) {

@@ -17,7 +17,8 @@ app.get('/useragent', function(req, res){
 }); 
 
 app.get('/language', function(req, res) {
-    res.send( req.headers['accept-language'] );
+    var lang = req.headers['accept-language'].split(',');
+    res.send( lang[0] );
 });
 
 app.get('/os', function(req, res) {
