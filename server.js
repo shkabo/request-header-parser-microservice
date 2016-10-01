@@ -30,12 +30,12 @@ app.get('/os', function(req, res) {
 
 app.get('/api/whoami', function(req, res) {
    var ipaddress =  req.headers['x-forwarded-for'];
-   var language = req.headers['accept-language'];
+   var language = req.headers['accept-language'].split(',');
    
    var regExp = /\(([^)]+)\)/;
    var software = regExp.exec(req.headers['user-agent'])[1];
    
-   res.send({"ipaddress": ipaddress, "language": language, "software": software});
+   res.send({"ipaddress": ipaddress, "language": language[0], "software": software});
 });
 
 var server = app.listen(port, function() {
